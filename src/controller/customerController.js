@@ -3,8 +3,7 @@ const customerModel = require('../model/customerApi');
 
 /**************************************************createcustomer************************************************** */
  exports.createCustomer = async function(req, res){
- let data = req.body
- try{
+ try{ let data = req.body
  let savedData = await customerModel.create(data)
  return res.status(201).send({status: true, msg: "customerCreated", data: savedData})
  }
@@ -15,8 +14,10 @@ const customerModel = require('../model/customerApi');
 /*********************************************getcustomer  ********************************************** */
 exports.getcustomer = async function(req,res){
 
-    let data = await customerModel.find({status: "ACTIVE"})
-    return res.status(200).send({status:true, data: data})
+let data=req.body
+data.status="ACTIVE"
+    let savedata = await customerModel.find(data)
+    return res.status(200).send({status:true, data: savedata})
 }
 /*************************************************deleteCustomer********************************************/
 exports.deleteCustomer = async function(req,res){
