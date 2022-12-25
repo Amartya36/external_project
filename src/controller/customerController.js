@@ -21,18 +21,12 @@ exports.getcustomer = async function(req,res){
 /*************************************************deleteCustomer********************************************/
 exports.deleteCustomer = async function(req,res){
 let blogId = req.params.blogId
-let data = await customerModel.findOneAndUpdate({_Id:blogId},{
+ await customerModel.findOneAndUpdate({_Id:blogId},{
     $set:{
     status: "INACTIVE",
    
-}},{new:true}).select({
-    _id:0,
-    "DOB":0,
-    "createdAt":0,
-    "updatedAt":0
-})
+}},{new:true})
 
-
-return res.status(200).send({status:true, msg: data})
+return res.status(200).send({status:true, msg:"this data  is deleted"})
 
 }
